@@ -124,9 +124,11 @@ def read_files():
     with open(r"C:\Users\mahedi\Desktop\COMP-6411/class.txt") as class_file:
         for line in class_file:
             model = Model()
-            model.student_id = line[:5]
-            model.first_name = line[line.index('|')+1:line.find('|', 6, len(line))]
-            model.last_name = line[line.find('|', 6, len(line))+1:].replace("\n", "")
+
+            line = line.split('|')
+            model.student_id = line[0]
+            model.first_name = line[1]
+            model.last_name = line[2].replace("\n", "")
             models.append(model)
 
     with open(r"C:\Users\mahedi\Desktop\COMP-6411/a1.txt") as a1_file:
@@ -138,8 +140,8 @@ def read_files():
                 first = False
 
             else:
-                tmp_a1 = float(line[6:].replace("\n", ""))
-                models[i].a1 = (tmp_a1 / a1_grade_scale) * 7.5
+                tmp_a1 = line.split('|')
+                models[i].a1 = tmp_a1[1].replace("\n", "")
                 i += 1
 
     with open(r"C:\Users\mahedi\Desktop\COMP-6411/a2.txt") as a2_file:
@@ -150,7 +152,8 @@ def read_files():
                 a2_grade_scale = float(line)
                 first = False
             else:
-                models[i].a2 = float(line[6:].replace("\n", ""))
+                tmp_a2 = line.split('|')
+                models[i].a2 = tmp_a2[1].replace("\n", "")
                 i += 1
 
     with open(r"C:\Users\mahedi\Desktop\COMP-6411/project.txt") as project_file:
@@ -161,7 +164,8 @@ def read_files():
                 project_grade_scale = int(line)
                 first = False
             else:
-                models[i].project = float(line[6:].replace("\n", ""))
+                tmp_project = line.split('|')
+                models[i].project = tmp_project[1].replace("\n", "")
                 i += 1
 
     with open(r"C:\Users\mahedi\Desktop\COMP-6411/test1.txt") as test1_file:
@@ -172,7 +176,8 @@ def read_files():
                 test1_grade_scale = int(line)
                 first = False
             else:
-                models[i].t1 = float(line[6:].replace("\n", ""))
+                tmp_t1 = line.split('|')
+                models[i].t1 = tmp_t1[1].replace("\n", "")
                 i += 1
 
     with open(r"C:\Users\mahedi\Desktop\COMP-6411/test2.txt") as test2_file:
@@ -183,15 +188,17 @@ def read_files():
                 test2_grade_scale = int(line)
                 first = False
             else:
-                models[i].t2 = float(line[6:].replace("\n", ""))
+                tmp_t2 = line.split('|')
+                models[i].t2 = tmp_t2[1].replace("\n", "")
                 i += 1
 
 
 def calculate_grades(tmp_pass_fail):
-    mark_range = (100 - pass_fail)/7
+    mark_range = (100 - tmp_pass_fail)/7
     if mark_range > 0:
         for i in range(len(models)):
-            total_tmp = models[i].a1 + models[i].a2 + models[i].project + models[i].t1 + models[i].t2
+            total_tmp = get_calculated_a1(models[i].a1) + get_calculated_a2(models[i].a2) + \
+                        get_calculated_project(models[i].project) + get_calculated_test1(models[i].t1) + get_calculated_test2(models[i].t2)
             models[i].marks = total_tmp
             if total_tmp <= tmp_pass_fail:
                 models[i].grade = "F"
@@ -209,6 +216,41 @@ def calculate_grades(tmp_pass_fail):
                 models[i].grade = "A-"
             elif total_tmp <= 100:
                 models[i].grade = "A+"
+
+
+def get_calculated_a1(a1):
+    if not a1:
+        return 0
+    else:
+        return int(float(a1) / a1_grade_scale * 7.5)
+
+
+def get_calculated_a2(a2):
+    if not a2:
+        return 0
+    else:
+        return int(float(a2) / a2_grade_scale * 7.5)
+
+
+def get_calculated_project(project):
+    if not project:
+        return 0
+    else:
+        return int(float(project)/project_grade_scale * 25)
+
+
+def get_calculated_test1(t1):
+    if not t1:
+        return 0
+    else:
+        return int(float(t1)/test1_grade_scale * 30)
+
+
+def get_calculated_test2(t2):
+    if not t2:
+        return 0
+    else:
+        return int(float(t2)/test1_grade_scale * 30)
 
 
 def main():
