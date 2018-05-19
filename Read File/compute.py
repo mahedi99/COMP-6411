@@ -116,12 +116,14 @@ def option_4(models, pass_fail):
     print("Sort by LT/GR:")
     while True:
         sort_option = input()
-        if sort_option == "LT":
+        if sort_option.upper() == "LT":
             option_3(sorted(models, key=attrgetter('last_name')), pass_fail)
             break
-        elif sort_option == "GR":
+        elif sort_option.upper() == "GR":
             option_3(sorted(models, key=attrgetter('marks'), reverse=True), pass_fail)
             break
+        else:
+            print("Wrong input!")
 
 
 def option_5(models, pass_fail):
