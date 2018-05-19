@@ -148,7 +148,7 @@ def calculate_grades(models, tmp_pass_fail):
     if mark_range > 0:
         for i in range(len(models)):
             total_tmp = models[i].marks
-            if total_tmp <= tmp_pass_fail:
+            if total_tmp < tmp_pass_fail:
                 models[i].grade = "F"
             elif total_tmp < tmp_pass_fail+(mark_range * 1):
                 models[i].grade = "C"

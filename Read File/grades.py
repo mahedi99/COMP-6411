@@ -20,8 +20,8 @@ def read_files():
 
     global models
 
-    with open(r"C:\Users\mahedi\Desktop\COMP-6411/class.txt") as class_file:
-        for line in class_file:
+    with open('class.txt', 'r') as class_file:
+        for line in sorted(class_file):
             model = Model()
 
             line = line.split('|')
@@ -30,73 +30,51 @@ def read_files():
             model.last_name = line[2].replace("\n", "")
             models.append(model)
 
-    with open(r"C:\Users\mahedi\Desktop\COMP-6411/a1.txt") as a1_file:
-        first = True
+    with open('a1.txt', 'r') as a1_file:
+        a1_grade_scale = float(a1_file.readline())
         i = 0
-        for line in a1_file:
-            if first:
-                a1_grade_scale = float(line)
-                first = False
+        for line in sorted(a1_file):
+            tmp_a1 = line.split('|')
+            models[i].a1 = tmp_a1[1].replace("\n", "")
+            i += 1
 
-            else:
-                tmp_a1 = line.split('|')
-                models[i].a1 = tmp_a1[1].replace("\n", "")
-                i += 1
-
-    with open(r"C:\Users\mahedi\Desktop\COMP-6411/a2.txt") as a2_file:
-        first = True
+    with open('a2.txt', 'r') as a2_file:
+        a2_grade_scale = float(a2_file.readline())
         i = 0
-        for line in a2_file:
-            if first:
-                a2_grade_scale = float(line)
-                first = False
-            else:
-                tmp_a2 = line.split('|')
-                models[i].a2 = tmp_a2[1].replace("\n", "")
-                i += 1
+        for line in sorted(a2_file):
+            tmp_a2 = line.split('|')
+            models[i].a2 = tmp_a2[1].replace("\n", "")
+            i += 1
 
-    with open(r"C:\Users\mahedi\Desktop\COMP-6411/project.txt") as project_file:
-        first = True
+    with open('project.txt', 'r') as project_file:
+        project_grade_scale = int(project_file.readline())
         i = 0
-        for line in project_file:
-            if first:
-                project_grade_scale = int(line)
-                first = False
-            else:
-                tmp_project = line.split('|')
-                models[i].project = tmp_project[1].replace("\n", "")
-                i += 1
+        for line in sorted(project_file):
+            tmp_project = line.split('|')
+            models[i].project = tmp_project[1].replace("\n", "")
+            i += 1
 
-    with open(r"C:\Users\mahedi\Desktop\COMP-6411/test1.txt") as test1_file:
-        first = True
+    with open('test1.txt', 'r') as test1_file:
+        test1_grade_scale = int(test1_file.readline())
         i = 0
-        for line in test1_file:
-            if first:
-                test1_grade_scale = int(line)
-                first = False
-            else:
-                tmp_t1 = line.split('|')
-                models[i].t1 = tmp_t1[1].replace("\n", "")
-                i += 1
+        for line in sorted(test1_file):
+            tmp_t1 = line.split('|')
+            models[i].t1 = tmp_t1[1].replace("\n", "")
+            i += 1
 
-    with open(r"C:\Users\mahedi\Desktop\COMP-6411/test2.txt") as test2_file:
-        first = True
+    with open('test2.txt', 'r') as test2_file:
+        test2_grade_scale = int(test2_file.readline())
         i = 0
         for line in test2_file:
-            if first:
-                test2_grade_scale = int(line)
-                first = False
-            else:
-                tmp_t2 = line.split('|')
-                models[i].t2 = tmp_t2[1].replace("\n", "")
-                i += 1
+            tmp_t2 = line.split('|')
+            models[i].t2 = tmp_t2[1].replace("\n", "")
+            i += 1
 
 
 def main():
     global models
 
     read_files()
-    models = sorted(models, key=attrgetter('student_id'))
     models = calculate_total_marks(models, a1_grade_scale, a2_grade_scale, project_grade_scale, test1_grade_scale, test2_grade_scale)
 
     ans = True
