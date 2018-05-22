@@ -64,7 +64,7 @@ def option_2(models, a1_grade_scale, a2_grade_scale, project_grade_scale, test1_
             for x in models:
                 if not x.a1:
                     total += 0
-                else:\
+                else:
                     total += int(x.a1)
             total = total/len(models)
             print("%.1f/%d" % (total, a1_grade_scale))

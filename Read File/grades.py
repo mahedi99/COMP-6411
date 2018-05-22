@@ -32,43 +32,53 @@ def read_files():
 
     with open('a1.txt', 'r') as a1_file:
         a1_grade_scale = float(a1_file.readline())
-        i = 0
         for line in sorted(a1_file):
             tmp_a1 = line.split('|')
-            models[i].a1 = tmp_a1[1].replace("\n", "")
-            i += 1
+            tmp_id = tmp_a1[0]
+            for x in range(len(models)):
+                if models[x].student_id == tmp_id:
+                    models[x].a1 = tmp_a1[1].replace("\n", "")
+                    break
 
     with open('a2.txt', 'r') as a2_file:
         a2_grade_scale = float(a2_file.readline())
-        i = 0
         for line in sorted(a2_file):
             tmp_a2 = line.split('|')
-            models[i].a2 = tmp_a2[1].replace("\n", "")
-            i += 1
+            tmp_id = tmp_a2[0]
+            for x in range(len(models)):
+                if models[x].student_id == tmp_id:
+                    models[x].a2 = tmp_a2[1].replace("\n", "")
+                    break
 
     with open('project.txt', 'r') as project_file:
         project_grade_scale = int(project_file.readline())
-        i = 0
         for line in sorted(project_file):
             tmp_project = line.split('|')
-            models[i].project = tmp_project[1].replace("\n", "")
-            i += 1
+            tmp_id = tmp_project[0]
+            for x in range(len(models)):
+                if models[x].student_id == tmp_id:
+                    models[x].project = tmp_project[1].replace("\n", "")
+                    break
 
     with open('test1.txt', 'r') as test1_file:
         test1_grade_scale = int(test1_file.readline())
-        i = 0
         for line in sorted(test1_file):
             tmp_t1 = line.split('|')
-            models[i].t1 = tmp_t1[1].replace("\n", "")
-            i += 1
+            tmp_id = tmp_t1[0]
+            for x in range(len(models)):
+                if models[x].student_id == tmp_id:
+                    models[x].t1 = tmp_t1[1].replace("\n", "")
+                    break
 
     with open('test2.txt', 'r') as test2_file:
         test2_grade_scale = int(test2_file.readline())
-        i = 0
         for line in test2_file:
             tmp_t2 = line.split('|')
-            models[i].t2 = tmp_t2[1].replace("\n", "")
-            i += 1
+            tmp_id = tmp_t2[0]
+            for x in range(len(models)):
+                if models[x].student_id == tmp_id:
+                    models[x].t2 = tmp_t2[1].replace("\n", "")
+                    break
 
 
 def main():
