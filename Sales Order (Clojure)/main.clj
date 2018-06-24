@@ -123,7 +123,7 @@
   (println input ":" prod-count)
 )
 (defn option-6 []
-  (println "Good Bye!")
+  (println "Good Bye")
   (. System exit 0)
 )
 

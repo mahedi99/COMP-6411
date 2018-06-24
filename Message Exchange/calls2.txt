@@ -1,0 +1,5 @@
+{john, [jill,joe,bob,jill,joe,bob,jill,joe,bob,jill,joe,bob,jill,joe,bob,jill,joe,bob,jill,joe,bob,jill,joe,bob,jill,joe,bob,jill,joe,bob,jill,joe,bob,jill,joe,bob,jill,joe,bob]}.
+{jill, [bob,joe,bob,jill,joe,bob,jill,joe,bob,jill,joe,bob,jill,joe,bob,jill,joe,bob,jill,joe,bob,jill,joe,bob,jill,joe,bob,jill,joe,bob,jill,joe,bob,jill,joe,bob]}.
+{sue, [jill,jill,jill,bob,jill,jill,joe,bob,jill,joe,bob]}.
+{bob, [john]}.
+{joe, [sue,jill,bob,jill,bob,jill,bob,jill,bob,jill,bob,jill,bob,jill,bob,jill,bob,jill,bob,jill,bob]}.
